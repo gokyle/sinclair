@@ -25,11 +25,12 @@ information.
 
 The returned JSON is in the form:
 
-    {
-        "message": "",
-        "nodes": [
-            {
+    [
+        {
+            "message": "",
+            "node": {
                 "body": "<p>And now we speak of things to come&hellip;</p>\n",
+                "date": 1391461140,
                 "mtime": 1393914468,
                 "path": "testpost.md",
                 "slug": "bespoke-blogging-engines",
@@ -39,17 +40,23 @@ The returned JSON is in the form:
                     "blogging",
                     "lisp",
                     "hacking"
-                ]
-            }
-        ],
-        "success": true
-    }
-
+                ],
+                "title": "In which the protagonist ruminates on bespoke blogging engines"
+            },
+            "success": true
+        },
+        {
+            "message": "open nothere: no such file or directory",
+            "node": null,
+            "success": false
+        }
+    ]
+  
 Notice that if success is true, there will be no message; the message
 field is used only to convery error messages. If success is false, the
 error message will be found in message.
 
-A node is an array of objects containing:
+A node is an object containing:
 
 * title: the node's title as used for HTML rendering
 * static: true if the node is a :page, false if the node is a post
@@ -65,21 +72,26 @@ A node is an array of objects containing:
 
 #### Node mtime scanning
 
-    {
-        "message": "",
-        "results": [
-            {
+    [
+        {
+            "message": "",
+            "result": {
                 "mtime": 1393914468,
                 "path": "testpost.md"
-            }
-        ],
-        "success": true
-    }
-
+            },
+            "success": true
+        },
+        {
+            "message": "stat nothere: no such file or directory",
+            "result": null,
+            "success": false
+        }
+    ]
+ 
 The same success and message fields are used in this container;
-however, the results field contains a list of objects storing the path
-to the node and the last modified time. This can be used to build a
-list of nodes that should be updated.
+however, the result field contains an object storing the path to the
+node and the last modified time. This can be used to build a list of
+nodes that should be updated.
 
 ### License
 
