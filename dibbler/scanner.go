@@ -108,6 +108,7 @@ func loadFile(path string) (node *Node, err error) {
 	var body = []byte{}
 	for scanner.Scan() {
 		body = append(body, scanner.Bytes()...)
+		body = append(body, 0xa)
 	}
 
 	body = bytes.TrimSpace(body)
