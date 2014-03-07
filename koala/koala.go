@@ -77,7 +77,9 @@ func main() {
 					}
 					return nil
 				}
-			} else if info.IsDir() && !*showDirs {
+			}
+
+			if info.IsDir() && !(*showDirs) {
 				return nil
 			}
 
